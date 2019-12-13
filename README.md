@@ -1,3 +1,13 @@
+- forked from https://github.com/raintean/blink
+
+## 修改：去除自动释放dll过程，防止360杀毒误报
+- 使用时 请将 https://github.com/weolar/miniblink49 下载的dll文件放入当前运行文件夹。
+- 命名规则：
+```bash
+    32位:blink_386.dll 
+    64位:blink_amd64.dll
+````
+
 # blink
 使用html来编写golang的GUI程序(only windows), 基于[miniblink开源库](https://github.com/weolar/miniblink49)  
 

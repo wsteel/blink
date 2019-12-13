@@ -24,7 +24,6 @@ func InitBlink() error {
 	path, errx := os.Executable()
 	if errx != nil {
 		return fmt.Errorf("无法获取当前目录：%s, err: %s", "now", errx)
-		return nil
 	}
 
 	ThisPath := filepath.Dir(path)
@@ -34,7 +33,6 @@ func InitBlink() error {
 	_, err := os.Stat(dllPath) //os.Stat获取文件信息
 	if err != nil && os.IsNotExist(err) {
 		return fmt.Errorf("无法获取dll文件：%s", dllPath)
-		return nil
 	}
 
 	//启动一个新的协程来处理blink的API调用

@@ -32,3 +32,12 @@ func goOnTitleChangedCallback(window C.wkeWebView, titleString *C.char) {
 		view.Emit("titleChanged", view, titleGoString)
 	}()
 }
+
+//export goOnDownloadCallback
+func goOnDownloadCallback(window C.wkeWebView, urlChar *C.char) {
+	urlGoString := C.GoString(urlChar)
+	go func() {
+		view := getWebViewByWindow(window)
+		view.Emit("download", view, urlGoString)
+	}()
+}

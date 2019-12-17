@@ -84,6 +84,10 @@ func NewWebView(isTransparent bool, bounds ...int) *WebView {
 		}
 	})
 
+	view.On("download", func(v *WebView, url string) {
+
+	})
+
 	//注入预置的API给js调用
 	view.Inject("MoveToCenter", view.MoveToCenter)
 	view.Inject("SetWindowTitle", view.SetWindowTitle)
@@ -284,4 +288,22 @@ func (view *WebView) DestroyWindow() {
 		}
 		<-done
 	}
+}
+
+func (view *WebView) SetCookieEnabled(enable bool) {
+	done := make(chan bool)
+	jobQueue <- func() {
+		C.setCookieEnabled(view.window, C.bool(enable))
+		close(done)
+	}
+	<-done
+}
+
+func (view *WebView) GetCookie() string {
+	done := make(chan string)
+	jobQueue <- func() {
+		done <- C.GoString(C.getCookie(view.window))
+		close(done)
+	}
+	return <-done
 }

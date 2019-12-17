@@ -7,6 +7,8 @@
     32位:blink_386.dll 
     64位:blink_amd64.dll
 ````
+## 修改：监听下载方法，加入读取cookie功能(感谢 https://github.com/alexxuyao/blink)
+
 
 # blink
 使用html来编写golang的GUI程序(only windows), 基于[miniblink开源库](https://github.com/weolar/miniblink49)  

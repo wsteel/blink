@@ -3,6 +3,7 @@
 wkeWebView createWebWindow(bool isTransparent, int x, int y, int width, int height)
 {
     wkeWebView window = wkeCreateWebWindow(isTransparent ? WKE_WINDOW_TYPE_TRANSPARENT : WKE_WINDOW_TYPE_POPUP, NULL, x, y, width, height);
+    wkeSetCookieEnabled(window, true);
     //设置数据目录
     wkeSetLocalStorageFullPath(window, wlocalstorage);
     wkeSetCookieJarFullPath(window, wcookiejar);
@@ -60,4 +61,13 @@ void WKE_CALL_TYPE onShowDevtoolsCallback(wkeWebView window, void *param)
 void showDevTools(wkeWebView window)
 {
     wkeShowDevtools(window, L"http://__devtools__/inspector.html", onShowDevtoolsCallback, NULL);
+}
+
+void setCookieEnabled(wkeWebView window, bool enable)
+{
+    wkeSetCookieEnabled(window, enable);
+}
+
+const char *getCookie(wkeWebView window){
+    return wkeGetCookie(window);
 }

@@ -7,6 +7,7 @@
     32位:blink_386.dll 
     64位:blink_amd64.dll
 ````
+## 修改：添加DebugConfig, UserAgent的设置
 ## 修改：监听下载方法，加入读取cookie功能(感谢 https://github.com/alexxuyao/blink)
 
 

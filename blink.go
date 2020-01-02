@@ -18,6 +18,12 @@ var jobQueue = make(chan func())
 
 //初始化blink,释放并加载dll,启动调用队列
 func InitBlink() error {
+
+	errdir := os.MkdirAll(TempPath, 0644)
+	if errdir != nil {
+		return fmt.Errorf("无法创建临时目录：%s, err: %s", TempPath, errdir)
+	}
+
 	//定义dll的路径
 	dllPath := filepath.Join(TempPath, "blink_"+runtime.GOARCH+".dll")
 

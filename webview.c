@@ -68,6 +68,25 @@ void setCookieEnabled(wkeWebView window, bool enable)
     wkeSetCookieEnabled(window, enable);
 }
 
-const char *getCookie(wkeWebView window){
+const char *getCookie(wkeWebView window)
+{
     return wkeGetCookie(window);
+}
+
+void setDebugConfig(wkeWebView window, char *debugString, char *param)
+{
+    wkeSetDebugConfig(window, debugString, param);
+    free(debugString);
+    free(param);
+}
+
+void setUserAgent(wkeWebView window, char *userAgent)
+{
+    wkeSetUserAgent(window, userAgent);
+    free(userAgent);
+}
+
+const char *getUserAgent(wkeWebView window)
+{
+    return wkeGetUserAgent(window);
 }

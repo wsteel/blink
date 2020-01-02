@@ -15,7 +15,13 @@ func TestBlink(t *testing.T) {
 		log.Fatal(errv)
 	}
 	view := NewWebView(false, 1366, 920)
-	view.LoadURL("https://open.163.com/appdownload")
+
+	view.SetDebugConfig("wakeMinInterval", "1")
+	view.SetDebugConfig("drawMinInterval", "1")
+	view.SetDebugConfig("antiAlias", "1")
+	view.SetUserAgent("Blink Test")
+
+	view.LoadURL("http://127.0.0.1:8888/agent")
 	view.SetWindowTitle("test")
 	view.MoveToCenter()
 	view.ShowWindow()
@@ -28,5 +34,8 @@ func TestBlink(t *testing.T) {
 	view.On("destroy", func(_ *WebView) {
 		close(exit)
 	})
+
+	fmt.Printf("UserAgent:%s\n", view.GetUserAgent())
+
 	<-exit
 }

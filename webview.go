@@ -307,3 +307,30 @@ func (view *WebView) GetCookie() string {
 	}
 	return <-done
 }
+
+func (view *WebView) SetDebugConfig(debugString, param string) {
+	done := make(chan bool)
+	jobQueue <- func() {
+		C.setDebugConfig(view.window, C.CString(debugString), C.CString(param))
+		close(done)
+	}
+	<-done
+}
+
+func (view *WebView) SetUserAgent(userAgent string) {
+	done := make(chan bool)
+	jobQueue <- func() {
+		C.setUserAgent(view.window, C.CString(userAgent))
+		close(done)
+	}
+	<-done
+}
+
+func (view *WebView) GetUserAgent() string {
+	done := make(chan string)
+	jobQueue <- func() {
+		done <- C.GoString(C.getUserAgent(view.window))
+		close(done)
+	}
+	return <-done
+}

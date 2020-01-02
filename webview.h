@@ -21,4 +21,7 @@ void destroyWindow(wkeWebView window);
 void showDevTools(wkeWebView window);
 void setCookieEnabled(wkeWebView window, bool enable);
 const char *getCookie(wkeWebView window);
+void setDebugConfig(wkeWebView window, char *debugString, char *param);
+void setUserAgent(wkeWebView window, char *userAgent);
+const char *getUserAgent(wkeWebView window);
 #endif

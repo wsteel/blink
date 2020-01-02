@@ -19,9 +19,9 @@ func TestBlink(t *testing.T) {
 	view.SetDebugConfig("wakeMinInterval", "1")
 	view.SetDebugConfig("drawMinInterval", "1")
 	view.SetDebugConfig("antiAlias", "1")
-	view.SetUserAgent("Blink Test")
+	view.SetUserAgent("Blink Chrome")
 
-	view.LoadURL("http://127.0.0.1:8888/agent")
+	view.LoadURL("https://open.163.com/appdownload")
 	view.SetWindowTitle("test")
 	view.MoveToCenter()
 	view.ShowWindow()

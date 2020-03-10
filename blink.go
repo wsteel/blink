@@ -45,7 +45,6 @@ func InitBlink() error {
 	go func() {
 		//将这个协程锁在当前的线程上
 		runtime.LockOSThread()
-
 		//初始化
 		C.initBlink(
 			C.CString(dllPath),
@@ -53,12 +52,14 @@ func InitBlink() error {
 			C.CString(filepath.Join(TempPath, "cookie.dat")),
 		)
 
-		//注册DevTools工具到虚拟文件系统
-		RegisterFileSystem("__devtools__", &assetfs.AssetFS{
-			Asset:     devtools.Asset,
-			AssetDir:  devtools.AssetDir,
-			AssetInfo: devtools.AssetInfo,
-		})
+		if isDebug {
+			//注册DevTools工具到虚拟文件系统
+			RegisterFileSystem("__devtools__", &assetfs.AssetFS{
+				Asset:     devtools.Asset,
+				AssetDir:  devtools.AssetDir,
+				AssetInfo: devtools.AssetInfo,
+			})
+		}
 
 		//消费API调用,同时处理好windows消息
 		for {
